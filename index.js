@@ -265,6 +265,33 @@ od_rawInput$.subscribe((e) => {
   result.value = `avg: ${avg}\nresult: ${result1}\nresult2: ${result2}`;
 });
 
+const count_plusClick$ = rxjs.fromEvent(
+  document.querySelector("#count_plus"),
+  "click"
+);
+const count_minusClick$ = rxjs.fromEvent(
+  document.querySelector("#count_minus"),
+  "click"
+);
+const count_resetClick$ = rxjs.fromEvent(
+  document.querySelector("#count_reset"),
+  "click"
+);
+count_plusClick$.subscribe((e) => {
+  const result = document.querySelector("#count_result");
+  const resultNum = Number(result.value)
+  result.value = resultNum + 1
+});
+count_minusClick$.subscribe((e) => {
+  const result = document.querySelector("#count_result");
+  const resultNum = Number(result.value)
+  result.value = resultNum - 1
+});
+count_resetClick$.subscribe((e) => {
+  const result = document.querySelector("#count_result");
+  result.value = 0
+});
+
 const calc_rawInput$ = rxjs.fromEvent(
   document.querySelector("#calc_raw"),
   "input"
