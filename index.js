@@ -463,3 +463,18 @@ potrace_rawClick$.subscribe((e) => {
   Potrace.loadImageFromFile(fileData);
   Potrace.process(() => (result.value = Potrace.getSVG(3)));
 });
+
+// [javascriptでテキスト音声読み上げ - Qiita](https://qiita.com/taiko1/items/240eea6eb597701f83bb)
+const speech_rawClick$ = rxjs.fromEvent(
+  document.querySelector("#speech_button"),
+  "click"
+);
+speech_rawClick$.subscribe((e) => {
+  const speak = new SpeechSynthesisUtterance();
+  speak.text = document.querySelector("#speech_raw").value;
+  speak.rate = Number(document.querySelector("#speech_rate").value);
+  speak.pitch = Number(document.querySelector("#speech_pitch").value);
+  speak.lang = document.querySelector("#speech_lang").value;
+  console.log(speak)
+  speechSynthesis.speak(speak);
+});

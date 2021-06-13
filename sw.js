@@ -3,7 +3,8 @@ const CACHE_NAME = `v1`;
 // キャッシュするファイルをセットする
 const urlsToCache = [
   '/tapp/',
-  '/tapp/index.html'
+  '/tapp/index.html',
+  '/tapp/index.js'
 ];
 
 // インストール
