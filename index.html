@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>TApp 1.9</title>
+    <title>TApp 1.10</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="robots" content="noindex">
     <link rel="apple-touch-icon" sizes="256x256" href="apple-touch-icon.png">
@@ -95,12 +95,18 @@
     <input id="speech_pitch" type="number" value="0" style="width:5%;" />
     <input id="speech_lang" value="en-US" style="width:5%;" />
     <button id="speech_button">Do</button>
+    <br />
+    <input id="tf_passage" placeholder="tf" style="width:40%;" />
+    <input id="tf_question" style="width:40%;" />
+    <button id="tf_button">Do</button>
     <script src="https://cdn.jsdelivr.net/npm/rxjs@latest/bundles/rxjs.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ocrad.js@latest/ocrad.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simply-beautiful@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/exifreader@latest/dist/exif-reader.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@motardo/calc@latest/web/calc-global.js"></script>
     <script src="https://kilobtye.github.io/potrace/potrace.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/qna"> </script>
     <script src="index.js"></script>
 
 </body>

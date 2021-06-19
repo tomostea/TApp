@@ -176,11 +176,11 @@ sha_rawInput$.subscribe((e) => {
     .catch((e) => console.error(e));
 });
 
-const url_rawClick$ = rxjs.fromEvent(
+const url_Click$ = rxjs.fromEvent(
   document.querySelector("#url_button"),
   "click"
 );
-url_rawClick$.subscribe((e) => {
+url_Click$.subscribe((e) => {
   const input = document.querySelector("#url_raw").value;
   const result = document.querySelector("#url_result");
   if (!document.querySelector("#url_mode").checked) {
@@ -191,11 +191,11 @@ url_rawClick$.subscribe((e) => {
 });
 
 // [](https://luck2515.com/20200312/createPassword)
-const pass_rawClick$ = rxjs.fromEvent(
+const pass_Click$ = rxjs.fromEvent(
   document.querySelector("#pass_button"),
   "click"
 );
-pass_rawClick$.subscribe((e) => {
+pass_Click$.subscribe((e) => {
   const lowercase = "abcdefghijklmnopqrstuvwxyz";
   const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const numbers = "0123456789";
@@ -303,11 +303,11 @@ calc_rawInput$.subscribe((e) => {
 });
 
 // [rss-detect-bookmarklet/rss.js at master · aziraphale/rss-detect-bookmarklet](https://github.com/aziraphale/rss-detect-bookmarklet/blob/master/rss.js)
-const rss_rawClick$ = rxjs.fromEvent(
+const rss_Click$ = rxjs.fromEvent(
   document.querySelector("#rss_button"),
   "click"
 );
-rss_rawClick$.subscribe((e) => {
+rss_Click$.subscribe((e) => {
   const input = document.querySelector("#rss_raw").value;
   const result = document.querySelector("#rss_result");
   fetch(
@@ -333,11 +333,11 @@ rss_rawClick$.subscribe((e) => {
 });
 
 // [rss-detect-bookmarklet/rss.js at master · aziraphale/rss-detect-bookmarklet](https://github.com/aziraphale/rss-detect-bookmarklet/blob/master/rss.js)
-const jrnl_rawClick$ = rxjs.fromEvent(
+const jrnl_Click$ = rxjs.fromEvent(
   document.querySelector("#jrnl_button"),
   "click"
 );
-jrnl_rawClick$.subscribe((e) => {
+jrnl_Click$.subscribe((e) => {
   const input = document.querySelector("#jrnl_raw").value;
   const result = document.querySelector("#jrnl_result");
   const today = new Date();
@@ -372,11 +372,11 @@ btfy_rawInput$.subscribe((e) => {
 });
 
 // [totp.js · GitHub](https://gist.github.com/matobaa/fd519dbcfff2c30cb56597194d1a4541)
-const totp_rawClick$ = rxjs.fromEvent(
+const totp_Click$ = rxjs.fromEvent(
   document.querySelector("#totp_button"),
   "click"
 );
-totp_rawClick$.subscribe((e) => {
+totp_Click$.subscribe((e) => {
   const input = document.querySelector("#totp_raw").value;
   const result = document.querySelector("#totp_result");
   var b32 = (s) =>
@@ -424,11 +424,11 @@ la_Click$.subscribe((e) => {
 });
 
 // [Ocrad.js - Optical Character Recognition in Javascript](https://antimatter15.com/ocrad.js/demo.html)
-const ocr_rawClick$ = rxjs.fromEvent(
+const ocr_Click$ = rxjs.fromEvent(
   document.querySelector("#ocr_button"),
   "click"
 );
-ocr_rawClick$.subscribe((e) => {
+ocr_Click$.subscribe((e) => {
   const input = document.querySelector("#ocr_raw");
   const result = document.querySelector("#ocr_result");
   const fileData = input.files[0];
@@ -452,11 +452,11 @@ ocr_rawClick$.subscribe((e) => {
 });
 
 // [potrace](http://kilobtye.github.io/potrace/)
-const potrace_rawClick$ = rxjs.fromEvent(
+const potrace_Click$ = rxjs.fromEvent(
   document.querySelector("#potrace_button"),
   "click"
 );
-potrace_rawClick$.subscribe((e) => {
+potrace_Click$.subscribe((e) => {
   const input = document.querySelector("#potrace_raw");
   const result = document.querySelector("#potrace_result");
   const fileData = input.files[0];
@@ -465,11 +465,11 @@ potrace_rawClick$.subscribe((e) => {
 });
 
 // [javascriptでテキスト音声読み上げ - Qiita](https://qiita.com/taiko1/items/240eea6eb597701f83bb)
-const speech_rawClick$ = rxjs.fromEvent(
+const speech_Click$ = rxjs.fromEvent(
   document.querySelector("#speech_button"),
   "click"
 );
-speech_rawClick$.subscribe((e) => {
+speech_Click$.subscribe((e) => {
   const speak = new SpeechSynthesisUtterance();
   speak.text = document.querySelector("#speech_raw").value;
   speak.rate = Number(document.querySelector("#speech_rate").value);
@@ -477,4 +477,17 @@ speech_rawClick$.subscribe((e) => {
   speak.lang = document.querySelector("#speech_lang").value;
   console.log(speak)
   speechSynthesis.speak(speak);
+});
+
+// [tfjs-models/qna at master · tensorflow/tfjs-models](https://github.com/tensorflow/tfjs-models/tree/master/qna)
+const tf_Click$ = rxjs.fromEvent(
+  document.querySelector("#tf_button"),
+  "click"
+);
+tf_Click$.subscribe((e) => {
+  const passage = document.querySelector("#tf_passage").value;
+  const question = document.querySelector("#tf_question").value;
+  const model = await qna.load();
+  const answers = await model.findAnswers(question, passage);
+  prompt("answer", answers)
 });
