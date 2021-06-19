@@ -484,7 +484,7 @@ const tf_Click$ = rxjs.fromEvent(
   document.querySelector("#tf_button"),
   "click"
 );
-tf_Click$.subscribe((e) => {
+tf_Click$.subscribe(async (e) => {
   const passage = document.querySelector("#tf_passage").value;
   const question = document.querySelector("#tf_question").value;
   const model = await qna.load();
