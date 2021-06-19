@@ -212,9 +212,8 @@ pass_Click$.subscribe((e) => {
   const useUppercase = pass_mode.includes("upper");
   const useNumber = pass_mode.includes("number");
   const useSymbol = pass_mode.includes("symbol");
-  const strList = `${useLowercase ? lowercase : ""}${
-    useUppercase ? uppercase : ""
-  }${useNumber ? numbers : ""}${useSymbol ? symbols : ""}`;
+  const strList = `${useLowercase ? lowercase : ""}${useUppercase ? uppercase : ""
+    }${useNumber ? numbers : ""}${useSymbol ? symbols : ""}`;
   const secureMathRandom = () =>
     window.crypto.getRandomValues(new Uint32Array(1))[0] / 4294967295;
   let password = "";
@@ -380,20 +379,20 @@ totp_Click$.subscribe((e) => {
   const input = document.querySelector("#totp_raw").value;
   const result = document.querySelector("#totp_result");
   var b32 = (s) =>
-      [0, 8, 16, 24, 32, 40, 48, 56]
-        .map((i) =>
-          [0, 1, 2, 3, 4, 5, 6, 7]
-            .map((j) => s.charCodeAt(i + j))
-            .map((c) => (c < 65 ? c - 24 : c - 65))
-        )
-        .map((a) => [
-          (a[0] << 3) + (a[1] >> 2),
-          (a[1] << 6) + (a[2] << 1) + (a[3] >> 4),
-          (a[3] << 4) + (a[4] >> 1),
-          (a[4] << 7) + (a[5] << 2) + (a[6] >> 3),
-          (a[6] << 5) + (a[7] >> 0),
-        ])
-        .flat(),
+    [0, 8, 16, 24, 32, 40, 48, 56]
+      .map((i) =>
+        [0, 1, 2, 3, 4, 5, 6, 7]
+          .map((j) => s.charCodeAt(i + j))
+          .map((c) => (c < 65 ? c - 24 : c - 65))
+      )
+      .map((a) => [
+        (a[0] << 3) + (a[1] >> 2),
+        (a[1] << 6) + (a[2] << 1) + (a[3] >> 4),
+        (a[3] << 4) + (a[4] >> 1),
+        (a[4] << 7) + (a[5] << 2) + (a[6] >> 3),
+        (a[6] << 5) + (a[7] >> 0),
+      ])
+      .flat(),
     trunc = (dv) => dv.getUint32(dv.getInt8(19) & 0x0f) & 0x7fffffff,
     c = Math.floor(Date.now() / 1000 / 30);
   crypto.subtle
@@ -489,5 +488,5 @@ tf_Click$.subscribe(async (e) => {
   const question = document.querySelector("#tf_question").value;
   const model = await qna.load();
   const answers = await model.findAnswers(question, passage);
-  prompt("answer", answers)
+  prompt("answer", JSON.stringify(answers));
 });
