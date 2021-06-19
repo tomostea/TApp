@@ -1,10 +1,10 @@
-const CACHE_NAME = "v2";
+const CACHE_NAME = "v3";
 
 // キャッシュするファイルをセットする
 const urlsToCache = [
-  "/tapp/",
-  "/tapp/index.html",
-  "/tapp/index.js",
+  "/TApp/",
+  "/TApp/index.html",
+  "/TApp/index.js",
   "https://cdn.jsdelivr.net/npm/rxjs@latest/bundles/rxjs.umd.min.js",
   "https://cdn.jsdelivr.net/npm/ocrad.js@latest/ocrad.js",
   "https://cdn.jsdelivr.net/npm/simply-beautiful@latest",
