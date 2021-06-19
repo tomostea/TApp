@@ -1,10 +1,16 @@
-const CACHE_NAME = `v1`;
+const CACHE_NAME = "v2";
 
 // キャッシュするファイルをセットする
 const urlsToCache = [
-  '/tapp/',
-  '/tapp/index.html',
-  '/tapp/index.js'
+  "/tapp/",
+  "/tapp/index.html",
+  "/tapp/index.js",
+  "https://cdn.jsdelivr.net/npm/rxjs@latest/bundles/rxjs.umd.min.js",
+  "https://cdn.jsdelivr.net/npm/ocrad.js@latest/ocrad.js",
+  "https://cdn.jsdelivr.net/npm/simply-beautiful@latest",
+  "https://cdn.jsdelivr.net/npm/exifreader@latest/dist/exif-reader.min.js",
+  "https://cdn.jsdelivr.net/npm/@motardo/calc@latest/web/calc-global.js",
+  "https://kilobtye.github.io/potrace/potrace.js",
 ];
 
 // インストール
