@@ -254,7 +254,7 @@ od_rawInput$.subscribe((e) => {
   const result = document.querySelector("#od_result");
   const amount = 10000;
   const target = 0.1;
-  const dilution = 50;
+  const dilution = Number(document.querySelector("#od_dilution").value);
   const odraw = input.split(",");
   const ods = odraw.map((x) => parseFloat(x));
   const sum = ods.reduce((a, x) => a + x);
