@@ -248,7 +248,7 @@ fin_space_rawInput$.subscribe((e) => {
   result.value = sum;
 });
 
-const od_rawInput$ = rxjs.fromEvent(document.querySelector("#od_raw"), "input");
+const od_rawInput$ = rxjs.fromEvent(document.querySelector("#od_button"), "click");
 od_rawInput$.subscribe((e) => {
   const input = document.querySelector("#od_raw").value;
   const result = document.querySelector("#od_result");
