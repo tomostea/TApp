@@ -1,4 +1,4 @@
-const CACHE_NAME = "v4";
+const CACHE_NAME = "v5";
 
 // キャッシュするファイルをセットする
 const urlsToCache = [
@@ -13,6 +13,9 @@ const urlsToCache = [
   "https://kilobtye.github.io/potrace/potrace.js",
   "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs",
   "https://cdn.jsdelivr.net/npm/@tensorflow-models/qna",
+  "https://cdn.jsdelivr.net/npm/three@latest/build/three.min.js",
+  "https://cdn.jsdelivr.net/npm/three@latest/examples/js/loaders/GLTFLoader.js",
+  "https://cdn.jsdelivr.net/npm/three@latest/examples/js/controls/OrbitControls.js"
 ];
 
 // インストール
