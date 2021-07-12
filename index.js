@@ -155,13 +155,9 @@ function readExif(openId) {
 
 // [RxJS入門 | 第1回 RxJSとは | CodeGrid](https://www.codegrid.net/articles/2017-rxjs-1/)
 
-// [Vue.js プロパティの変更をデータに反映する - 前人未踏の領域へ WEB・インフラ・プログラミング全般編](https://taker.hatenablog.com/entry/2020/04/07/083542)
 // [SHA256のハッシュをJavaScriptのWeb標準のライブラリだけで計算する - nwtgck / Ryo Ota](https://scrapbox.io/nwtgck/SHA256のハッシュをJavaScriptのWeb標準のライブラリだけで計算する)
-const sha_rawInput$ = rxjs.fromEvent(
-  document.querySelector("#sha_raw"),
-  "input"
-);
-sha_rawInput$.subscribe((e) => {
+document.querySelector("#sha_raw").addEventListener("input", sha_rawInput)
+function sha_rawInput() {
   const input = document.querySelector("#sha_raw").value;
   const result = document.querySelector("#sha_result");
   const buff = new Uint8Array([].map.call(input, (c) => c.charCodeAt(0)))
@@ -174,13 +170,10 @@ sha_rawInput$.subscribe((e) => {
         .join("");
     })
     .catch((e) => console.error(e));
-});
+};
 
-const url_Click$ = rxjs.fromEvent(
-  document.querySelector("#url_button"),
-  "click"
-);
-url_Click$.subscribe((e) => {
+document.querySelector("#url_button").addEventListener("click", urlClick)
+function urlClick() {
   const input = document.querySelector("#url_raw").value;
   const result = document.querySelector("#url_result");
   if (!document.querySelector("#url_mode").checked) {
@@ -188,14 +181,11 @@ url_Click$.subscribe((e) => {
   } else {
     result.value = encodeURI(input);
   }
-});
+};
 
 // [](https://luck2515.com/20200312/createPassword)
-const pass_Click$ = rxjs.fromEvent(
-  document.querySelector("#pass_button"),
-  "click"
-);
-pass_Click$.subscribe((e) => {
+document.querySelector("#pass_button").addEventListener("click", passClick)
+function passClick() {
   const lowercase = "abcdefghijklmnopqrstuvwxyz";
   const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const numbers = "0123456789";
@@ -221,23 +211,20 @@ pass_Click$.subscribe((e) => {
     password += strList[Math.floor(secureMathRandom() * strList.length)];
   }
   result.value = password;
-});
+};
 
-const fin_json_rawInput$ = rxjs.fromEvent(
-  document.querySelector("#fin_json_raw"),
-  "input"
-);
-fin_json_rawInput$.subscribe((e) => {
+document.querySelector("#fin_json_raw").addEventListener("input", fin_json_rawInput)
+function fin_json_rawInput() {
   const input = document.querySelector("#fin_json_raw").value;
   const result = document.querySelector("#fin_json_result");
   const json = JSON.parse(input);
   const values = Object.values(json);
   const sum = values.reduce((sum, n) => (sum += Number(n)));
   result.value = sum;
-});
+};
 
-const od_rawInput$ = rxjs.fromEvent(document.querySelector("#od_button"), "click");
-od_rawInput$.subscribe((e) => {
+document.querySelector("#od_button").addEventListener("click", od_rawInput)
+function od_rawInput() {
   const input = document.querySelector("#od_raw").value;
   const result = document.querySelector("#od_result");
   const amount = 10000;
@@ -250,51 +237,36 @@ od_rawInput$.subscribe((e) => {
   const result1 = amount * (target / (dilution * avg));
   const result2 = (400 * (0.3 / avg)) / 2;
   result.value = `avg: ${avg}\nresult: ${result1}\nresult2: ${result2}`;
-});
+};
 
-const count_plusClick$ = rxjs.fromEvent(
-  document.querySelector("#count_plus"),
-  "click"
-);
-const count_minusClick$ = rxjs.fromEvent(
-  document.querySelector("#count_minus"),
-  "click"
-);
-const count_resetClick$ = rxjs.fromEvent(
-  document.querySelector("#count_reset"),
-  "click"
-);
-count_plusClick$.subscribe((e) => {
+document.querySelector("#count_plus").addEventListener("click", count_plusClick)
+document.querySelector("#count_minus").addEventListener("click", count_minusClick)
+document.querySelector("#count_reset").addEventListener("click", count_resetClick)
+function count_plusClick() {
   const result = document.querySelector("#count_result");
   const resultNum = Number(result.value)
   result.value = resultNum + 1
-});
-count_minusClick$.subscribe((e) => {
+};
+function count_minusClick() {
   const result = document.querySelector("#count_result");
   const resultNum = Number(result.value)
   result.value = resultNum - 1
-});
-count_resetClick$.subscribe((e) => {
+};
+function count_resetClick() {
   const result = document.querySelector("#count_result");
   result.value = 0
-});
+};
 
-const calc_rawInput$ = rxjs.fromEvent(
-  document.querySelector("#calc_raw"),
-  "input"
-);
-calc_rawInput$.subscribe((e) => {
+document.querySelector("#calc_raw").addEventListener("input", calc_rawInput)
+function calc_rawInput() {
   const input = document.querySelector("#calc_raw").value;
   const result = document.querySelector("#calc_result");
   result.value = calc(input);
-});
+};
 
 // [rss-detect-bookmarklet/rss.js at master · aziraphale/rss-detect-bookmarklet](https://github.com/aziraphale/rss-detect-bookmarklet/blob/master/rss.js)
-const rss_Click$ = rxjs.fromEvent(
-  document.querySelector("#rss_button"),
-  "click"
-);
-rss_Click$.subscribe((e) => {
+document.querySelector("#rss_button").addEventListener("click", rssClick)
+function rssClick() {
   const input = document.querySelector("#rss_raw").value;
   const result = document.querySelector("#rss_result");
   fetch(
@@ -317,14 +289,11 @@ rss_Click$.subscribe((e) => {
       result.value = links.length > 0 ? links : "None";
     })
     .catch((e) => console.error(e));
-});
+};
 
 // [rss-detect-bookmarklet/rss.js at master · aziraphale/rss-detect-bookmarklet](https://github.com/aziraphale/rss-detect-bookmarklet/blob/master/rss.js)
-const jrnl_Click$ = rxjs.fromEvent(
-  document.querySelector("#jrnl_button"),
-  "click"
-);
-jrnl_Click$.subscribe((e) => {
+document.querySelector("#jrnl_button").addEventListener("click", jrnlClick)
+function jrnlClick() {
   const input = document.querySelector("#jrnl_raw").value;
   const result = document.querySelector("#jrnl_result");
   const today = new Date();
@@ -345,25 +314,19 @@ jrnl_Click$.subscribe((e) => {
       `https://query.wikidata.org/#PREFIX%20rdfs:%20<http://www.w3.org/2000/01/rdf-schema#>select%20distinct%20*%20where%20{%20?s%20rdfs:label%20?o%20filter%20regex%20(?o,%20"${art}").}limit%201`
     );
   }
-});
+};
 
-const btfy_rawInput$ = rxjs.fromEvent(
-  document.querySelector("#btfy_raw"),
-  "input"
-);
-btfy_rawInput$.subscribe((e) => {
+document.querySelector("#btfy_raw").addEventListener("input", btfy_rawInput)
+function btfy_rawInput() {
   const input = document.querySelector("#btfy_raw").value;
   const result = document.querySelector("#btfy_result");
   const beautify = SimplyBeautiful();
   result.value = beautify.js(input);
-});
+};
 
 // [totp.js · GitHub](https://gist.github.com/matobaa/fd519dbcfff2c30cb56597194d1a4541)
-const totp_Click$ = rxjs.fromEvent(
-  document.querySelector("#totp_button"),
-  "click"
-);
-totp_Click$.subscribe((e) => {
+document.querySelector("#totp_button").addEventListener("click", totpClick)
+function totpClick() {
   const input = document.querySelector("#totp_raw").value;
   const result = document.querySelector("#totp_result");
   var b32 = (s) =>
@@ -399,23 +362,20 @@ totp_Click$.subscribe((e) => {
       )
     )
     .then((h) => (result.value = ("0" + trunc(new DataView(h))).slice(-6)));
-});
+};
 
-const la_Click$ = rxjs.fromEvent(document.querySelector("#la_button"), "click");
-la_Click$.subscribe((e) => {
+document.querySelector("#la_button").addEventListener("click", laClick)
+function laClick() {
   const result = document.querySelector("#la_result");
   const date = new Date();
   result.value = date.toLocaleString("ja-JP", {
     timeZone: "America/Los_Angeles",
   });
-});
+};
 
 // [Ocrad.js - Optical Character Recognition in Javascript](https://antimatter15.com/ocrad.js/demo.html)
-const ocr_Click$ = rxjs.fromEvent(
-  document.querySelector("#ocr_button"),
-  "click"
-);
-ocr_Click$.subscribe((e) => {
+document.querySelector("#ocr_button").addEventListener("click", ocrClick)
+function ocrClick() {
   const input = document.querySelector("#ocr_raw");
   const result = document.querySelector("#ocr_result");
   const fileData = input.files[0];
@@ -436,32 +396,25 @@ ocr_Click$.subscribe((e) => {
     };
   };
   reader.readAsDataURL(fileData);
-});
+};
 
 // [potrace](http://kilobtye.github.io/potrace/)
-const potrace_Click$ = rxjs.fromEvent(
-  document.querySelector("#potrace_button"),
-  "click"
-);
-potrace_Click$.subscribe((e) => {
+document.querySelector("#potrace_button").addEventListener("click", potraceClick)
+function potraceClick() {
   const input = document.querySelector("#potrace_raw");
   const result = document.querySelector("#potrace_result");
   const fileData = input.files[0];
   Potrace.loadImageFromFile(fileData);
   Potrace.process(() => (result.value = Potrace.getSVG(3)));
-});
+};
 
 // [javascriptでテキスト音声読み上げ - Qiita](https://qiita.com/taiko1/items/240eea6eb597701f83bb)
-const speech_Click$ = rxjs.fromEvent(
-  document.querySelector("#speech_button"),
-  "click"
-);
-speech_Click$.subscribe((e) => {
+document.querySelector("#speech_button").addEventListener("click", speechClick)
+function speechClick() {
   const speak = new SpeechSynthesisUtterance();
   speak.text = document.querySelector("#speech_raw").value;
   speak.rate = Number(document.querySelector("#speech_rate").value);
   speak.pitch = Number(document.querySelector("#speech_pitch").value);
   speak.lang = document.querySelector("#speech_lang").value;
-  console.log(speak)
   speechSynthesis.speak(speak);
-});
+};
