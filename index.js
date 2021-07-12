@@ -236,18 +236,6 @@ fin_json_rawInput$.subscribe((e) => {
   result.value = sum;
 });
 
-const fin_space_rawInput$ = rxjs.fromEvent(
-  document.querySelector("#fin_space_raw"),
-  "input"
-);
-fin_space_rawInput$.subscribe((e) => {
-  const input = document.querySelector("#fin_space_raw").value;
-  const result = document.querySelector("#fin_space_result");
-  const fin_array = input.split(" ");
-  const sum = fin_array.reduce((sum, n) => (sum += Number(n)), 0);
-  result.value = sum;
-});
-
 const od_rawInput$ = rxjs.fromEvent(document.querySelector("#od_button"), "click");
 od_rawInput$.subscribe((e) => {
   const input = document.querySelector("#od_raw").value;
@@ -476,83 +464,4 @@ speech_Click$.subscribe((e) => {
   speak.lang = document.querySelector("#speech_lang").value;
   console.log(speak)
   speechSynthesis.speak(speak);
-});
-
-// [tfjs-models/qna at master · tensorflow/tfjs-models](https://github.com/tensorflow/tfjs-models/tree/master/qna)
-const tf_Click$ = rxjs.fromEvent(
-  document.querySelector("#tf_button"),
-  "click"
-);
-tf_Click$.subscribe(async (e) => {
-  const passage = document.querySelector("#tf_passage").value;
-  const question = document.querySelector("#tf_question").value;
-  const model = await qna.load();
-  const answers = await model.findAnswers(question, passage);
-  prompt("answer", JSON.stringify(answers));
-});
-
-// [Blenderで作成した3Dモデルを、Three.jsでブラウザに表示する - Qiita](https://qiita.com/nannany_hey/items/c92d9f05588c751077b1#threejs%E3%81%AB%E3%81%A6%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%9Fgltf%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E3%83%AD%E3%83%BC%E3%83%89%E3%81%99%E3%82%8B)
-const gltf_Click$ = rxjs.fromEvent(
-  document.querySelector("#gltf_button"),
-  "click"
-);
-gltf_Click$.subscribe(async (e) => {
-  // レンダラーを作成
-  const renderer = new THREE.WebGLRenderer({
-    canvas: document.querySelector('#gltf_canvas')
-  });
-
-  // シーンを作成
-  const scene = new THREE.Scene();
-
-  // カメラを作成
-  camera = new THREE.PerspectiveCamera(45, 1, 1, 10000);
-  camera.position.set(0, 400, -1000);
-
-  const controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-  // Load GLTF or GLB
-  const loader = new THREE.GLTFLoader();
-  const url = document.querySelector('#gltf_url').value;
-
-  let model = null;
-  loader.load(
-    url,
-    function (gltf) {
-      model = gltf.scene;
-      // model.name = "model_with_cloth";
-      model.scale.set(400.0, 400.0, 400.0);
-      model.position.set(0, -400, 0);
-      scene.add(gltf.scene);
-
-      // model["test"] = 100;
-    },
-    function (error) {
-      console.log('An error happened');
-      console.log(error);
-    }
-  );
-  renderer.gammaOutput = true;
-  renderer.gammaFactor = 2.2;
-
-
-  // 平行光源
-  const light = new THREE.DirectionalLight(0xFFFFFF);
-  light.intensity = 2; // 光の強さを倍に
-  light.position.set(1, 1, 1);
-  // シーンに追加
-  scene.add(light);
-
-  // 初回実行
-  tick();
-
-  function tick() {
-    controls.update();
-
-    if (model != null) {
-      console.log(model);
-    }
-    renderer.render(scene, camera);
-    requestAnimationFrame(tick);
-  }
 });
