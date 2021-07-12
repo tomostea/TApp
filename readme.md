@@ -1,6 +1,6 @@
 # TApp
 
-PWA app for file encryption, MediaRecorder and more... with RxJS
+PWA app for file encryption, MediaRecorder and more...
 
 [TApp](https://tomostea.github.io/TApp)
 
