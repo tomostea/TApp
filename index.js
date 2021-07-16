@@ -418,3 +418,61 @@ function speechClick() {
   speak.lang = document.querySelector("#speech_lang").value;
   speechSynthesis.speak(speak);
 };
+
+// // [Blenderで作成した3Dモデルを、Three.jsでブラウザに表示する - Qiita](https://qiita.com/nannany_hey/items/c92d9f05588c751077b1#threejs%E3%81%AB%E3%81%A6%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%9Fgltf%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92%E3%83%AD%E3%83%BC%E3%83%89%E3%81%99%E3%82%8B)
+document.querySelector("#gltf_raw").onchange = function () {
+  var inputFile = document.querySelector("#gltf_raw").files[0];
+  const objectUrl = window.URL.createObjectURL(inputFile)
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas: document.querySelector('#gltf_result')
+  });
+
+  // シーンを作成
+  const scene = new THREE.Scene();
+
+  // カメラを作成
+  camera = new THREE.PerspectiveCamera(45, 1, 1, 10000);
+  camera.position.set(0, 400, -1000);
+
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+  // Load GLTF or GLB
+  const loader = new THREE.GLTFLoader();
+
+  let model = null;
+  loader.load(
+    objectUrl,
+    function (gltf) {
+      model = gltf.scene;
+      // model.name = "model_with_cloth";
+      model.scale.set(400.0, 400.0, 400.0);
+      model.position.set(0, -400, 0);
+      scene.add(gltf.scene);
+
+      // model["test"] = 100;
+    },
+    function (error) {
+      console.log('An error happened');
+      console.log(error);
+    }
+  );
+  renderer.gammaOutput = true;
+  renderer.gammaFactor = 2.2;
+
+  const light = new THREE.AmbientLight(0xFFFFFF, 1.0);
+  // シーンに追加
+  scene.add(light);
+
+  // 初回実行
+  tick();
+
+  function tick() {
+    controls.update();
+
+    if (model != null) {
+      console.log(model);
+    }
+    renderer.render(scene, camera);
+    requestAnimationFrame(tick);
+  }}
