@@ -3,12 +3,24 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>TApp 1.19</title>
+    <title>TApp 1.20</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="robots" content="noindex">
     <link rel="apple-touch-icon" sizes="256x256" href="apple-touch-icon.png">
     <style>
-        input {
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #000;
+                color: rgb(110, 110, 110);
+            }
+            input,
+            textarea,
+            button {
+                background-color: rgb(110, 110, 110);
+            }
+        }
+        input,
+        textarea {
             font-size: 16px;
         }
     </style>
@@ -83,11 +95,11 @@
     <br />
     <input id="ocr_raw" type="file" accept="image/*" />
     <button id="ocr_button">Do</button>
-    <input id="ocr_result" placeholder="ocr"/>
+    <input id="ocr_result" placeholder="ocr" />
     <br />
     <input id="potrace_raw" type="file" accept="image/*" />
     <button id="potrace_button">Do</button>
-    <input id="potrace_result" placeholder="potrace"/>
+    <input id="potrace_result" placeholder="potrace" />
     <br />
     <input id="speech_raw" placeholder="speech" />
     <input id="speech_rate" type="number" value="1" style="width:5%;" />
@@ -95,7 +107,7 @@
     <input id="speech_lang" value="en-US" style="width:5%;" />
     <button id="speech_button">Do</button>
     <br>
-    <input id="gltf_raw" type="file" accept=".glb,.gltf"/>
+    <input id="gltf_raw" type="file" accept=".glb,.gltf" />
     <canvas id="gltf_result" width="300" height="300"></canvas>
     <script src="https://cdn.jsdelivr.net/npm/ocrad.js@latest/ocrad.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simply-beautiful@latest"></script>
