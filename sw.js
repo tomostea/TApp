@@ -13,6 +13,8 @@ const urlsToCache = [
   "https://cdn.jsdelivr.net/npm/three@latest/build/three.min.js",
   "https://cdn.jsdelivr.net/npm/three@latest/examples/js/loaders/GLTFLoader.js",
   "https://cdn.jsdelivr.net/npm/three@latest/examples/js/controls/OrbitControls.js",
+  "https://li-na.github.io/mozjpeg.js/js/jpegtran.min.js",
+  "https://li-na.github.io/optipng.js/js/optipng.min.js"
 ];
 
 // インストール
